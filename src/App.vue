@@ -24,6 +24,9 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+* {
+  touch-action: none;
+}
 .app {
   width: 100%;
   height: 100%;

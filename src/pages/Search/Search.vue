@@ -26,7 +26,7 @@
       </ul>
     </section>
 
-    <div class="search_none" v-else>很抱歉！无搜索结果</div>
+    <div class="search_none" v-if="noSearchShops">很抱歉！无搜索结果</div>
   </section>
 </template>
 
@@ -37,7 +37,9 @@ export default {
   data(){
     return {
       keyword:'',
-      imgBaseUrl:'http://cangdu.org:8001/img'
+      imgBaseUrl:'https://i0.hippopx.com/photos/272/143/685/',
+      noSearchShops:false
+
     }
   },
   components:{
@@ -48,18 +50,25 @@ export default {
       //得到搜索关键字搜索
       const keyword =this.keyword.trim()
       if(keyword){
+        
         this.$store.dispatch('searchShops',keyword)
       }
     }
   },
   computed:{
     ...mapState(['searchShops']),
-    noSearchShops(){
-
-    }
   },
   mounted() {
-    console.log(this.searchShops);
+    console.log(this);
+  },
+  watch:{
+    searchShops(value){
+      if (!value.length) {//没有数据
+        this.noSearchShops =true
+      }else {
+        this.noSearchShops =false
+      }
+    }
   }
 };
 </script>

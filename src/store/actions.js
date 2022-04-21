@@ -128,8 +128,9 @@ export default {
     async searchShops({commit, state}, keyword) {
     const geohash = state.latitude + ',' + state.longitude
     const result = await reqSearchShop(geohash, keyword)
+
     if (result.code === 0) {
-      const searchShops = result.data
+      const searchShops = result.data1
       commit(RECEIVE_SEARCH_SHOPS, {searchShops})
     }
   },
